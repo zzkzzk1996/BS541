@@ -9,6 +9,7 @@ application = Flask(__name__)
 def query_mysql():
     query = request.args.get('query', 'show tables;')
     # password
+    # connection = connect_mysql(host='', user='',password='', db='')
 
     col_name, content, query_time = connection.run_query(query)
     result = {'col_name': col_name, 'result': content, 'query_time': query_time}
@@ -20,6 +21,7 @@ def query_mysql():
 def insert():
     part_query = request.args.get('query', 'show tables;')
     # password
+    # connection = connect_mysql(host='', user='',password='', db='')
 
     get_last_query = 'select max(order_id) from orders'
     _, last_content, _ = connection.run_query(get_last_query)
