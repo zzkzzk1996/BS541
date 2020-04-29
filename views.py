@@ -8,8 +8,8 @@ application = Flask(__name__)
 @application.route('/mysql', methods=['GET'])
 def query_mysql():
     query = request.args.get('query', 'show tables;')
-    connection = connect_mysql(host='database-1.cqggblhrtnvj.us-east-1.rds.amazonaws.com', user='admin',
-                               password='12345678', db='test')
+    # password
+
     col_name, content, query_time = connection.run_query(query)
     result = {'col_name': col_name, 'result': content, 'query_time': query_time}
     connection.disconnect()
@@ -19,8 +19,7 @@ def query_mysql():
 @application.route('/insert', methods=['GET'])
 def insert():
     part_query = request.args.get('query', 'show tables;')
-    connection = connect_mysql(host='database-1.cqggblhrtnvj.us-east-1.rds.amazonaws.com', user='admin',
-                               password='12345678', db='test')
+    # password
 
     get_last_query = 'select max(order_id) from orders'
     _, last_content, _ = connection.run_query(get_last_query)
